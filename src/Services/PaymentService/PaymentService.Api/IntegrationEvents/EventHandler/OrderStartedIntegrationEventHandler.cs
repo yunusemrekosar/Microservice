@@ -20,12 +20,12 @@ namespace PaymentService.Api.IntegrationEvents.EventHandler
         public Task Handle(OrderStartedIntegrationEvent @event)
         {
             // Fake payment process
-            string keyword = "PaymentSuccess";
-            bool paymentSuccessFlag = configuration.GetValue<bool>(keyword);
-            paymentSuccessFlag = true;
+
+            bool paymentSuccessFlag = configuration.GetValue<bool>("PaymentSuccess");
+
             IntegrationEvent paymentEvent = paymentSuccessFlag
                 ? new OrderPaymentSuccessIntegrationEvent(@event.OrderId)
-                : new OrderPaymentFailedIntegrationEvent(@event.OrderId, "This is a fake error message");
+                : new OrderPaymentFailedIntegrationEvent(@event.OrderId, "Payment failed: insufficient funds ");
 
             logger.LogInformation($"OrderStartedIntegrationEventHandler in PaymentService is fired with PaymentSuccess: {paymentSuccessFlag}, orderId: {@event.OrderId}");
 

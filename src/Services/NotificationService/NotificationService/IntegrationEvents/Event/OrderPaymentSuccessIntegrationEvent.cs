@@ -1,6 +1,6 @@
 ﻿using EventBusBase.Events;
 
-namespace PaymentService.Api.IntegrationEvents.Event
+namespace NotificationService.IntegrationEvents.Event
 {
     public class OrderPaymentSuccessIntegrationEvent : IntegrationEvent
     {
